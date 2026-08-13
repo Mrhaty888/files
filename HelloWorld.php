@@ -47,5 +47,26 @@
 		$mul = $num2*$contador;
 		echo "$num2 x $contador = $mul", PHP_EOL;
 		$contador++;
+	//Ex 7
+	Echo "Números pares entre 1 e 50: ".PHP_EOL;
+	for($i=1;$i<=50;$i++){
+		if ($i%2==0){
+			print $i.PHP_EOL;
+		}
+	}
+	//Ex 8
+	echo "Números pares e impares de 1 a 100: ".PHP_EOL;
+   	for($y=1;$y<=100;$y++){
+		if ($y%2==0){
+			echo "$y é par.".PHP_EOL;
+		} else{
+			echo "$y é impar.".PHP_EOL;
+		}
+	//Ex 9
+	$frutas = ["Maçã","Uva","Pêra","Banana","Melancia"];
+	 foreach($frutas as $fruta){
+		echo $fruta.PHP_EOL;
+ }
+   }
 
 ?>
