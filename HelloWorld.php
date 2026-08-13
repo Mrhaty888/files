@@ -39,5 +39,13 @@
 	} else {
 		print "Reprovado";
 	}
+    //Ex 6
+	$num2 = readline("Digite um número");
+	$contador = 1;
+	print "Tabuada do $num2: ".PHP_EOL;
+	while ($contador <= 10) {
+		$mul = $num2*$contador;
+		echo "$num2 x $contador = $mul", PHP_EOL;
+		$contador++;
 
 ?>
