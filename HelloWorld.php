@@ -109,5 +109,28 @@
 		} else{
 			print "Cidade não listada.";
 		}
+    //Ex 13
+    function calcular_media($n1, $n2, $n3){
+       $media = ($n1 + $n2 + $n3)/3;
+	   echo $media;
+	}
+	
+	calcular_media(4,7,8);
+    // Ex 14
+    function verificaridade($idade){
+		if($idade>=18){
+			print "Maior de idade.".PHP_EOL;
+		} else{
+			print "Menor de idade.".PHP_EOL;
+		}
+	}
+	$idade = readline("Digite sua idade: ");
+
+	while (!is_numeric($idade)){
+		print "Idade inválida".PHP_EOL;
+		$idade = readline("Digite sua idade: ");
+	}
+	
+	verificaridade($idade)
 
 ?>
