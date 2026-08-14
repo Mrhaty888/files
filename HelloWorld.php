@@ -27,7 +27,7 @@
 	//Ex 5
 	$nota = readline("Informe sua nota de 0 a 10: ");
 
-	while (($nota < 0 or $nota > 10) or !is_int($nota)) {
+	while (((int)$nota < 0 or (int)$nota > 10) or !is_numeric($nota)) {
 		echo "Nota inválida, informe outra" . PHP_EOL;
 		$nota = readline("Informe sua nota de 0 a 10: ");
 	}
@@ -39,6 +39,7 @@
 	} else {
 		print "Reprovado";
 	}
+
     //Ex 6
 	$num2 = readline("Digite um número");
 	$contador = 1;
@@ -70,13 +71,43 @@
 		echo $fruta.PHP_EOL;
  }
  //Ex 10
-$carro [
-	"marca" => "Toyota",
-	"modelo" => "SUV Corolla Cros",
-	"ano" => 2021,
- ];
- foreach($carro as $parte){
-	Echo $fruta[$parte].PHP_EOL;
- }
+	$carro [
+		"marca" => "Toyota",
+		"modelo" => "SUV Corolla Cros",
+		"ano" => 2021,
+	 ];
+	foreach($carro as $parte){
+		Echo $fruta[$parte].PHP_EOL;
+	 }
+	
+	//Ex 11
+	$alunos = [
+			["Nome" => "Hector",
+			"Nota1" => 7.5,
+			"Nota2" => 4,
+			"Nota3" => 6],
+			["Nome" => "Ana",
+			"Nota1" => 5,
+			"Nota2" => 4,
+			"Nota3" => 9],
+			["Nome" => "Maria",
+			"Nota1" => 7,
+			"Nota2" => 8,
+			"Nota3" => 10]
+		];
+		foreach($alunos as $aluno){
+			$media = ($aluno["Nota1"]+$aluno["Nota2"]+$aluno["Nota3"])/3;
+			print $aluno["Nome"].": $media".PHP_EOL;
+		}
+	
+	//Ex 12
+	$cidades = ["Marília","Garça","Vera Cruz","Lins","Bauru"];
+		$escolha = readline("Digite uma cidade: ");
+		
+		if (in_array($escolha,$cidades)){
+			print "Cidade listada.";
+		} else{
+			print "Cidade não listada.";
+		}
 
 ?>
