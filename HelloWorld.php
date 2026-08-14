@@ -132,5 +132,18 @@
 	}
 	
 	verificaridade($idade)
+    //Ex 15
+	$lista=[];
+	$opcao = "a";
+	echo "Lista de compras".PHP_EOL;
+	echo "Digite sair para sair.".PHP_EOL;
+	while(true){
+	       $opcao = readline("Digite um item: ");
+		   if($opcao=="sair" or $opcao=="Sair"){
+			break;
+		   }
+		   $lista[]=$opcao;
+		}
+	echo "Lista: ".implode(", ", $lista);
 
 ?>
