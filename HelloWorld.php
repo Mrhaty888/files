@@ -47,6 +47,7 @@
 		$mul = $num2*$contador;
 		echo "$num2 x $contador = $mul", PHP_EOL;
 		$contador++;
+	}
 	//Ex 7
 	Echo "Números pares entre 1 e 50: ".PHP_EOL;
 	for($i=1;$i<=50;$i++){
@@ -62,11 +63,20 @@
 		} else{
 			echo "$y é impar.".PHP_EOL;
 		}
+	}
 	//Ex 9
 	$frutas = ["Maçã","Uva","Pêra","Banana","Melancia"];
 	 foreach($frutas as $fruta){
 		echo $fruta.PHP_EOL;
  }
-   }
+ //Ex 10
+$carro [
+	"marca" => "Toyota",
+	"modelo" => "SUV Corolla Cros",
+	"ano" => 2021,
+ ];
+ foreach($carro as $parte){
+	Echo $fruta[$parte].PHP_EOL;
+ }
 
 ?>
