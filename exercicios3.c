@@ -21,7 +21,7 @@
   float soma=0;
   int contador;
   for(contador=1;contador<=10;contador++){
-      printf("Digite o %d∞ n˙mero: ",contador);
+      printf("Digite o %d¬∞ n√∫mero: ",contador);
       scanf("%f",&num);
       if (contador==1){
         maior=num;
@@ -34,14 +34,14 @@
       soma+=num;
   }
   media=soma/10;
-  printf("Maior: %.2f \nMenor: %.2f \nSoma: %.2f \nMÈdia: %.2f",maior,menor,soma,media);
+  printf("Maior: %.2f \nMenor: %.2f \nSoma: %.2f \nM√©dia: %.2f",maior,menor,soma,media);
 }*/
 
 //Ex 3
   /*void main(){
   setlocale(LC_ALL,"portuguese");
   int contador;
-  printf("N˙meros pares de 1 ‡ 100.");
+  printf("N√∫meros pares de 1 √† 100.");
   for(contador=0;contador<=100;contador+=2){
     printf(" \n %d",contador);
   }
@@ -51,7 +51,7 @@
  /*void main(){
   setlocale(LC_ALL,"portuguese");
   int contador;
-  printf("Os m˙ltiplos de 3 entre 1 e 500: ");
+  printf("Os m√∫ltiplos de 3 entre 1 e 500: ");
   for(contador=0;contador<=500;contador+=3){
     printf("\n %d",contador);
   }
@@ -61,43 +61,30 @@
   void main(){
   setlocale(LC_ALL,"portuguese");
   int contador;
-  char letra[] = {"Cinco patinhos foram passear",
-"AlÈm das montanhas",
-"Para brincar",
-"A mam„e gritou: Qu·, qu·, qu·, qu·",
-"Mas sÛ quatro patinhos voltaram de l·",
-
-"Quatro patinhos foram passear",
-"AlÈm das montanhas",
-"Para brincar",
-"A mam„e gritou: Qu·, qu·, qu·, qu·",
-"Mas sÛ trÍs patinhos voltaram de l·",
-
-"TrÍs patinhos foram passear",
-"AlÈm das montanhas",
-"Para brincar",
-"A mam„e gritou: Qu·, qu·, qu·, qu·",
-"Mas sÛ dois patinhos voltaram de l·",
-
-"Dois patinhos foram passear",
-"AlÈm das montanhas",
-    "Para brincar",
-    "A mam„e gritou: Qu·, qu·, qu·, qu·",
-    "Mas sÛ um patinho voltou de l·",
-
-    "Um patinho foi passear",
-    "AlÈm das montanhas",
-    "Para brincar",
-    "A mam„e gritou: Qu·, qu·, qu·, qu·",
-    "Mas nenhum patinho voltou de l·",
-
-    "A mam„e patinha foi procurar",
-    "AlÈm das montanhas",
-    "Na beira do mar",
-    "A mam„e gritou: Qu·, qu·, qu·, qu·",
-    "E os cinco patinhos voltaram de l·"};
-
-  for(contador=0;contador>(sizeof(letra)/4)
+  for(contador=5;contador>=0;contador--){
+    int patinhos = contador - 1;
+    if (contador==0){
+        printf("A mam√£e patinha foi procurar");
+    } else{
+    printf("%d patinhos foram passear",contador);
+    }
+    printf("Al√©m das montanhas");
+    if (contador==0){
+        printf("Na beira do mar");
+    } else{
+        printf("Para brincar");
+    }
+    printf("A mam√£e gritou: Qu√°, qu√°, qu√°, qu√°");
+    if (patinhos == 0){
+        printf("Mas nenhum patinho voltou de l√°");
+    } else if(patinhos == 1){
+    printf("Mas s√≥ um patinho voltou de l√°");
+    }else if(patinhos==-1){
+    printf("E os cinco patinhos voltaram de l√°");
+    } else {
+    printf("Mas s√≥ %d patinhos voltaram de l√°",patinhos);
+    }
+  }
   }
 
 
