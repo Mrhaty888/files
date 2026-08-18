@@ -58,33 +58,39 @@
   }*/
 
   //Ex 5
-  void main(){
+  #include <stdio.h>
+#include <locale.h>
+
+    void main(){
   setlocale(LC_ALL,"portuguese");
   int contador;
   for(contador=5;contador>=0;contador--){
     int patinhos = contador - 1;
     if (contador==0){
-        printf("A mamãe patinha foi procurar");
+        printf("\n A mamãe patinha foi procurar");
+    } else if(contador==1){
+        printf("\n 1 patinho foi passear");
     } else{
-    printf("%d patinhos foram passear",contador);
+    printf("\n %d patinhos foram passear",contador);
     }
-    printf("Além das montanhas");
+    printf("\n Além das montanhas");
     if (contador==0){
-        printf("Na beira do mar");
+        printf("\n Na beira do mar");
     } else{
-        printf("Para brincar");
+        printf("\n Para brincar");
     }
-    printf("A mamãe gritou: Quá, quá, quá, quá");
+    printf("\n A mamãe gritou: Quá, quá, quá, quá");
     if (patinhos == 0){
-        printf("Mas nenhum patinho voltou de lá");
+        printf("\n Mas nenhum patinho voltou de lá");
     } else if(patinhos == 1){
-    printf("Mas só um patinho voltou de lá");
+    printf("\n Mas só um patinho voltou de lá");
     }else if(patinhos==-1){
-    printf("E os cinco patinhos voltaram de lá");
+    printf("\n E os cinco patinhos voltaram de lá");
     } else {
-    printf("Mas só %d patinhos voltaram de lá",patinhos);
+    printf("\n Mas só %d patinhos voltaram de lá",patinhos);
     }
   }
   }
+
 
 
