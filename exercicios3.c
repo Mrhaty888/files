@@ -59,7 +59,7 @@
 
   //Ex 5
   #include <stdio.h>
-#include <locale.h>
+  #include <locale.h>
 
     void main(){
   setlocale(LC_ALL,"portuguese");
