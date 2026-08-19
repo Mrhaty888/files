@@ -1,0 +1,43 @@
+* {
+    font-family: '', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* O corpo do site agora fica limpo para o mouse funcionar */
+body {
+    min-height: 100vh;
+    background-color: #111; /* Um fundo escuro para o gradiente destacar (opcional) */
+    position: relative;
+}
+
+/* Criamos a película de color grading na tela INTEIRA por aqui */
+body::after {
+    content: "";
+    position: fixed; /* Fixa na tela toda, mesmo ao rolar a página */
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(1, 33, 136, 0.4), rgba(1, 110, 211, 0.473));
+    mix-blend-mode: overlay;
+    pointer-events: none; /* Aqui sim o pointer-events funciona, protegendo o fundo */
+    z-index: 9999; /* Garante que o filtro cubra tudo */
+}
+
+/* Container centraliza a foto na tela sem esticar */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centraliza verticalmente na tela inteira */
+    width: 100%;
+}
+
+/* Foto de perfil perfeitamente circular e sem distorção */
+.fotoperfil {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    transition: transform 0.3s ease; /* Um efeito suave opcional ao mudar */
+}
