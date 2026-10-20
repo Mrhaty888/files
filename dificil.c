@@ -92,7 +92,7 @@ void exibir_lista(no *inicio) {
     no *aux = inicio;
     printf("Lista: ");
     while (aux != NULL) {
-        printf("[%d] -> ", aux->info);
+        printf("%d -> ", aux->info);
         aux = aux->prox;
     }
     printf("NULL\n");
