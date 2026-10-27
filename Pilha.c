@@ -11,61 +11,62 @@ no* inicializacao(){
     return NULL;
 }
 
-no* inserir(no *inicio, float valor) {
+no* inserir(no *topo, float valor) {
     no *novo = malloc(sizeof(no));
     if (novo == NULL)
-        return inicio;
+        return topo;
 
     novo->info = valor;
-    novo->prox = inicio;
+    novo->prox = topo;
     printf("Inserido!\n");
     return novo;
 }
 
-no* remover(no *inicio) {
-    if (inicio == NULL) {
+no* remover(no *topo) {
+    if (topo == NULL) {
         printf("Lista vazia!\n");
         return NULL;
     }
-    no *aux = inicio;
-    inicio = inicio->prox;
+    no *aux = topo;
+    topo = topo->prox;
     free(aux);
     printf("Removido!\n");
-    return inicio;
+    return topo;
 }
 
-void exibir_lista(no *inicio) {
-    no *aux;
-    if (inicio == NULL) {
+void exibir_lista(no *topo) {
+    no *aux = topo;
+    if (topo == NULL) {
         printf("Lista vazia \n");
     } else {
         while (aux!=NULL) {
-            printf("%.2f -> ",aux);
+            printf("%.2f <- ",aux->info);
             aux=aux->prox;
         }
-        printf("NULL");
+        printf("NULL \n");
     }
 }
 
-no* liberar_memoria(no *inicio) {
+no* liberar_memoria(no *topo) {
     no *aux1, *aux2;
-    if (inicio == NULL) {
+    if (topo == NULL) {
         printf("Lista vazia \n");
         return NULL;
     }
-    aux1 = inicio;
+    aux1 = topo;
     while (aux1!=NULL) {
         aux2 = aux1->prox;
         free(aux1);
         aux1 = aux2;
     }
     printf("Lista destruida! \n");
+    return NULL;
 }
 
 void main() {
     setlocale(LC_ALL, "portuguese");
 
-    no *inicio = inicializacao();
+    no *topo = inicializacao();
     int opcao;
     float valor;
 
@@ -86,30 +87,30 @@ void main() {
             case 1:
                 printf("\nDigite o valor para inserir: ");
                 scanf("%f", &valor);
-                inicio = inserir(inicio, valor);
-                exibir_lista(inicio);
+                topo = inserir(topo, valor);
+                exibir_lista(topo);
                 printf("Valor inserido com sucesso!\n");
                 break;
 
             case 2:
                 printf("\nRemovendo\n");
-                inicio = remover(inicio);
-                exibir_lista(inicio);
+                topo = remover(topo);
+                exibir_lista(topo);
                 break;
 
             case 3:
                 printf("\n--- Elementos da Lista ---\n");
-                exibir_lista(inicio);
+                exibir_lista(topo);
                 break;
 
             case 4:
                 printf("\nDestruindo toda a lista...\n");
-                inicio = liberar_memoria(inicio);
+                topo = liberar_memoria(topo);
                 break;
 
             case 0:
                 printf("\nSaindo do programa...\n");
-                inicio = liberar_memoria(inicio);
+                topo = liberar_memoria(topo);
                 break;
 
             default:
