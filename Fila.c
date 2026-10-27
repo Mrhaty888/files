@@ -66,6 +66,7 @@ void exibir_lista(fila *f) {
 void liberar_memoria(fila *f) {
     no *aux1, *aux2;
     aux1 = f->inicio;
+    aux2 = aux1;
     if (f->inicio == NULL) {
         printf("Lista vazia \n");
     } else {
@@ -74,6 +75,8 @@ void liberar_memoria(fila *f) {
             free(aux1);
             aux1 = aux2;
         }
+        f->fim = NULL;
+        f->inicio = NULL;
         printf("Lista destruida! \n");
     }
 }
