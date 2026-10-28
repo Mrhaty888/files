@@ -33,13 +33,16 @@ void enfileirar(fila *f, float valor){
     f->fim = novo;
 }
 
-void desenfilerar(fila *f) {
+float desenfilerar(fila *f) {
     no *aux;
+    float valor;
     aux = f->inicio;
     if (f->inicio == NULL) {
-        printf("Lista vazia! \n");
+        printf("Fila vazia! \n");
      }
-     else if (f->inicio->prox == NULL){
+     else{
+        if (f->inicio->prox == NULL){
+        valor = aux->info;
         f->fim = NULL;
         f->inicio = NULL;
         free(aux);
@@ -47,13 +50,15 @@ void desenfilerar(fila *f) {
         f->inicio = aux->prox;
         free(aux);
     }
-    printf("Removido! \n");
+    return valor;
+    }
 }
 
-void exibir_lista(fila *f) {
+void exibir_Fila(fila *f) {
     no *aux = f->inicio;
+    printf("Exibir fila: ");
     if (aux == NULL) {
-        printf("Lista vazia \n");
+        printf("Fila vazia \n");
     } else {
         while (aux!=NULL) {
             printf("%.2f <- ",aux->info);
@@ -68,7 +73,7 @@ void liberar_memoria(fila *f) {
     aux1 = f->inicio;
     aux2 = aux1;
     if (f->inicio == NULL) {
-        printf("Lista vazia \n");
+        printf("Fila vazia \n");
     } else {
         while (aux1!=NULL) {
             aux2 = aux1->prox;
@@ -77,7 +82,8 @@ void liberar_memoria(fila *f) {
         }
         f->fim = NULL;
         f->inicio = NULL;
-        printf("Lista destruida! \n");
+        printf("Fila destruida! \n");
+        free(f);
     }
 }
 
@@ -90,12 +96,12 @@ void main() {
 
     do {
 
-        printf("      Pilha  \n");
+        printf("      Fila  \n");
         printf("=========================================\n");
         printf(" 1 - Inserir \n");
         printf(" 2 - Remover \n");
-        printf(" 3 - Exibir Lista \n");
-        printf(" 4 - Destruir lista\n");
+        printf(" 3 - Exibir Fila \n");
+        printf(" 4 - Destruir Fila\n");
         printf(" 0 - Sair\n");
         printf("=========================================\n");
         printf("Escolha uma opcao: ");
@@ -103,26 +109,28 @@ void main() {
 
         switch(opcao) {
             case 1:
-                printf("\nDigite o valor para inserir: ");
+                printf("\nDigite o valor para push: ");
                 scanf("%f", &valor);
                 enfileirar(f, valor);
-                exibir_lista(f);
+                exibir_Fila(f);
                 printf("Valor inserido com sucesso!\n");
                 break;
 
             case 2:
                 printf("\nRemovendo\n");
-                desenfilerar(f);
-                exibir_lista(f);
+                valor = desenfilerar(f);
+                if (desenfilerar(f))
+                    printf("Valor %.2f removido! \n",valor);
+                exibir_Fila(f);
                 break;
 
             case 3:
-                printf("\n--- Elementos da Lista ---\n");
-                exibir_lista(f);
+                printf("\n--- Elementos da fila ---\n");
+                exibir_Fila(f);
                 break;
 
             case 4:
-                printf("\nDestruindo toda a lista...\n");
+                printf("\nDestruindo toda a fila...\n");
                 liberar_memoria(f);
                 break;
 
