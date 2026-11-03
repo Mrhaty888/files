@@ -136,11 +136,10 @@ void exibir_lista(indicador *i) {
     if (aux == NULL) {
         printf("Lista vazia! \n");
     } else {
-        printf("-> %f ", aux->info);
         do {
             printf("-> %f ",aux->info);
             aux = aux->prox;
-        } while (aux != i->inicio)
+        } while (aux != i->inicio);
     }
 }
 
