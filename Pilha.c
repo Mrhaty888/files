@@ -7,66 +7,147 @@ typedef struct no{
     struct no *prox;
 }no;
 
-no* inicializacao(){
-    return NULL;
+typedef struct{
+    no* inicio;
+    no *fim;
+} indicador;
+
+indicador* inicializa(){
+    indicador *i;
+
+    i = malloc(sizeof(indicador));
+    i->inicio = NULL;
+    i->fim = NULL;
+    return i;
+
 }
 
-no* inserir(no *topo, float valor) {
-    no *novo = malloc(sizeof(no));
-    if (novo == NULL)
-        return topo;
-
+void inserir_inicio(indicador *i, float valor) {
+    no *novo, *inicio_antigo;
+    novo = malloc(sizeof(no));
     novo->info = valor;
-    novo->prox = topo;
-    printf("Inserido!\n");
-    return novo;
-}
-
-no* remover(no *topo) {
-    if (topo == NULL) {
-        printf("Lista vazia!\n");
-        return NULL;
+    novo->prox = NULL;
+    inicio_antigo = NULL;
+    if (i->inicio == NULL) {
+        i->inicio = novo;
+        i->fim = novo;
     }
-    no *aux = topo;
-    topo = topo->prox;
-    free(aux);
-    printf("Removido!\n");
-    return topo;
+    else {
+        inicio_antigo = i->inicio;
+        novo->prox = inicio_antigo;
+        i->inicio = novo;
+    }
+    i->fim->prox = novo;
 }
 
-void exibir_lista(no *topo) {
-    no *aux = topo;
-    if (topo == NULL) {
-        printf("Lista vazia \n");
+void inserir_fim(indicador *i, float valor) {
+    no *novo, *fim_antigo;
+    novo = malloc(sizeof(no));
+    novo->info = valor;
+    fim_antigo = NULL;
+    if (i->inicio == NULL) {
+        i->inicio = novo;
+        i->fim = novo;
+    }
+    else {
+        fim_antigo = i->fim;
+        i->fim = novo;
+    }
+    novo->prox = i->inicio;
+}
+
+void remover_inicio(indicador *i) {
+    no *aux;
+    aux = i->inicio;
+    if (aux==NULL) {
+      printf("Lista vazia! \n");
+    } else if (aux->prox == aux) {
+        free(aux);
+        i->inicio = NULL;
+        i->fim = NULL;
     } else {
-        while (aux!=NULL) {
-            printf("%.2f <- ",aux->info);
+        i->inicio = aux->prox;
+        free(aux);
+        i->fim->prox = i->inicio;
+    }
+}
+
+void remover_fim(indicador *i) {
+    no *aux;
+    aux = i->fim;
+    if (aux==NULL) {
+      printf("Lista vazia! \n");
+    } else if (aux->prox == aux) {
+        free(aux);
+        i->inicio = NULL;
+        i->fim = NULL;
+    } else {
+        while (aux->prox != i->fim) {
             aux=aux->prox;
         }
-        printf("NULL \n");
+        free(i->fim);
+        i->fim = aux;
     }
 }
 
-no* liberar_memoria(no *topo) {
+void atualizar_valor(indicador *i, float valor, float valor_alterado) {
+    no *aux;
+    int achado = 0;
+    aux = i->inicio;
+    if (aux==NULL) {
+        printf("Lista vazia! \n");
+    } else {
+        aux = aux->prox;
+        while (aux != i->inicio) {
+            if (aux->info = valor) {
+                aux->info = valor_alterado;
+                achado = 1;
+                printf("Valor encontrado e editado. \n");
+
+            }
+        }
+        if (achado = 0) {
+            printf("Valor não encontrado!");
+        }
+    }
+}
+
+void destruir_lista(indicador *i) {
     no *aux1, *aux2;
-    if (topo == NULL) {
-        printf("Lista vazia \n");
-        return NULL;
-    }
-    aux1 = topo;
-    while (aux1!=NULL) {
-        aux2 = aux1->prox;
+    aux1 = i->inicio;
+    aux2 = aux1;
+    if (aux1 == NULL) {
+        printf("Lista vazia! \n");
+    } else {
+        while (aux1 != i->fim) {
+            aux2 = aux1->prox;
+            free(aux1);
+            aux1 = aux1->prox;
+        }
         free(aux1);
-        aux1 = aux2;
+        i->inicio = NULL;
+        i->fim = NULL;
     }
-    printf("Lista destruida! \n");
-    return NULL;
+}
+
+void exibir_lista(indicador *i) {
+    no *aux;
+    aux = i->inicio;
+    if (aux == NULL) {
+        printf("Lista vazia! \n");
+    } else {
+        printf("-> %f ", aux->info);
+        do {
+            printf("-> %f ",aux->info);
+            aux = aux->prox;
+        } while (aux != i->inicio)
+    }
 }
 
 void main() {
     setlocale(LC_ALL, "portuguese");
 
-    no *topo = inicializacao();
+    indicador *lista = inicializa();
     int opcao;
     float valor;
 
@@ -74,11 +155,8 @@ void main() {
 
         printf("      Pilha  \n");
         printf("=========================================\n");
-        printf(" 1 - Inserir \n");
-        printf(" 2 - Remover \n");
-        printf(" 3 - Exibir Lista \n");
-        printf(" 4 - Destruir lista\n");
-        printf(" 0 - Sair\n");
+        printf(" 1 - Inserir inicio \n");
+        printf(" 2 - Inserir inicio \n");
         printf("=========================================\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
@@ -87,30 +165,19 @@ void main() {
             case 1:
                 printf("\nDigite o valor para inserir: ");
                 scanf("%f", &valor);
-                topo = inserir(topo, valor);
-                exibir_lista(topo);
+                inserir_inicio(lista, valor);
+                exibir_lista(lista);
                 printf("Valor inserido com sucesso!\n");
                 break;
 
             case 2:
-                printf("\nRemovendo\n");
-                topo = remover(topo);
-                exibir_lista(topo);
-                break;
-
-            case 3:
-                printf("\n--- Elementos da Lista ---\n");
-                exibir_lista(topo);
-                break;
-
-            case 4:
-                printf("\nDestruindo toda a lista...\n");
-                topo = liberar_memoria(topo);
+                exibir_lista(lista);
+                printf("Valor inserido com sucesso!\n");
                 break;
 
             case 0:
                 printf("\nSaindo do programa...\n");
-                topo = liberar_memoria(topo);
+                destruir_lista(lista);
                 break;
 
             default:
@@ -123,3 +190,6 @@ void main() {
 
     } while(opcao != 0);
 }
+
+
+
